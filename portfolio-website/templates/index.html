@@ -1,0 +1,375 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-24">
+  <div class="blob blob-blue"></div>
+  <div class="blob blob-purple"></div>
+  <div class="blob blob-cyan"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="hero-anim">
+      <span class="hero-badge mb-5"><span class="pulse-dot"></span> Open to internships &amp; collaboration</span>
+      <p class="text-brand-blue dark:text-brand-cyan font-semibold mb-3">Hi, I'm Lianghok 👋</p>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-700 leading-tight mb-4">
+        I build <span class="gradient-text">software</span> while I'm still learning how it's built.
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 mb-2 h-8">
+        <span id="typed-role" class="font-medium text-brand-purple dark:text-brand-cyan"></span>
+      </p>
+      <p class="text-slate-600 dark:text-slate-300 max-w-md mb-8">
+        Information Technology Student | Aspiring Software Developer<br>
+        <span class="italic">&ldquo;I enjoy building useful digital experiences and turning ideas into working applications.&rdquo;</span>
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#projects" class="btn-primary">View My Projects</a>
+        <a href="{{ url_for('home.download_cv') }}" class="btn-secondary">Download CV</a>
+        <a href="#contact" class="btn-ghost">Contact Me <i class="fa-solid fa-arrow-right ml-2"></i></a>
+      </div>
+      <div class="hero-social">
+        <a href="https://github.com/LuuFaaLiang" aria-label="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/chheang-lianghok-7863a7439?trk=contact-info" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://www.facebook.com/share/19HdRJ9nGN/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="mailto:lianghokchheang@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <!-- 3D developer scene (falls back to the portrait card if 3D can't run) -->
+    <div class="flex justify-center md:justify-end" data-aos="fade-left">
+      <div id="dev-stage" class="dev-stage" data-state="idle" data-face="{{ url_for('static', filename='images/face-texture.png') }}" role="img"
+           aria-label="Animated 3D illustration of Lianghok typing code at a desk">
+        <canvas aria-hidden="true"></canvas>
+        <div class="dev-loader" aria-hidden="true"><span></span></div>
+        <div class="dev-fallback">
+      <div class="relative w-56 h-56 sm:w-64 sm:h-64 profile-wrap">
+        <div class="profile-ring"></div>
+        <div class="float-chip chip-1"><i class="fa-brands fa-python"></i> Python</div>
+        <div class="float-chip chip-2"><i class="fa-solid fa-laptop-code"></i> Web Dev</div>
+        <div class="float-chip chip-3"><i class="fa-solid fa-graduation-cap"></i> NUM Student</div>
+        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-brand-blue via-brand-purple to-brand-cyan opacity-90 rotate-6"></div>
+        <div class="absolute inset-0 rounded-[2rem] glass overflow-hidden -rotate-3 shadow-2xl ring-4 ring-white/60 dark:ring-white/10">
+          <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+               alt="Portrait of Lianghok"
+               width="640" height="640"
+               class="w-full h-full object-cover object-top"
+               fetchpriority="high">
+        </div>
+      </div>
+        </div>
+        <p class="sr-only" data-stage-status aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 animate-bounce" aria-label="Scroll to About">
+    <i class="fa-solid fa-chevron-down"></i>
+  </a>
+</section>
+
+<!-- 3D hero: Three.js is fetched lazily by dev-hero.js only when the scene can run -->
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="{{ url_for('static', filename='js/dev-hero.js') }}"></script>
+
+<!-- TECH MARQUEE -->
+<div class="marquee" aria-label="Technologies I work with"><div class="marquee-track"><span><i class="fa-brands fa-python"></i>Python</span><span><i class="fa-brands fa-html5"></i>HTML5</span><span><i class="fa-brands fa-css3-alt"></i>CSS3</span><span><i class="fa-brands fa-js"></i>JavaScript</span><span><i class="fa-solid fa-database"></i>SQL</span><span><i class="fa-solid fa-flask"></i>Flask</span><span><i class="fa-brands fa-git-alt"></i>Git</span><span><i class="fa-brands fa-github"></i>GitHub</span><span><i class="fa-brands fa-figma"></i>Figma</span><span><i class="fa-solid fa-network-wired"></i>Networking</span><span><i class="fa-brands fa-python"></i>Python</span><span><i class="fa-brands fa-html5"></i>HTML5</span><span><i class="fa-brands fa-css3-alt"></i>CSS3</span><span><i class="fa-brands fa-js"></i>JavaScript</span><span><i class="fa-solid fa-database"></i>SQL</span><span><i class="fa-solid fa-flask"></i>Flask</span><span><i class="fa-brands fa-git-alt"></i>Git</span><span><i class="fa-brands fa-github"></i>GitHub</span><span><i class="fa-brands fa-figma"></i>Figma</span><span><i class="fa-solid fa-network-wired"></i>Networking</span></div></div>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-start">
+    <div data-aos="fade-right">
+      <figure class="studio-card">
+        <img src="{{ url_for('static', filename='images/portrait-wide.jpg') }}" alt="Lianghok at his desk in a blue-lit studio with a Lianghok neon sign, bookshelf of Python and web development books, and a laptop"
+             width="960" height="910" loading="lazy" class="studio-img">
+        <figcaption class="studio-cap">Dream &middot; Learn &middot; Build &middot; Grow</figcaption>
+      </figure>
+      <h2 class="section-title mt-10">About me</h2>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I'm Lianghok, a first-year Information Technology student at the <strong>National University of Management (NUM)</strong>. I'm still early in my journey, but I already enjoy the process of building things — writing a script that automates something tedious, or getting a layout to finally look right.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        My goals are to grow into a software developer, learn AI and networking properly, and eventually build applications that are genuinely useful for people in Cambodia.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-4">
+        <div class="stat-card">
+          <p class="stat-number" data-count="7">0</p>
+          <p class="stat-label">Practice projects</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number" data-count="4">0</p>
+          <p class="stat-label">Certificates</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-aos="fade-left">
+      <h3 class="font-display font-600 text-lg mb-6">My journey so far</h3>
+      <ol class="timeline">
+        <li>
+          <span class="timeline-dot"></span>
+          <p class="font-semibold">Kampong Thom High School</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Finished general studies, first exposure to computers and basic programming.</p>
+        </li>
+        <li>
+          <span class="timeline-dot"></span>
+          <p class="font-semibold">National University of Management</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Started a degree in Information Technology.</p>
+        </li>
+        <li>
+          <span class="timeline-dot"></span>
+          <p class="font-semibold">Learning journey</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Teaching myself Python, web development, and the basics of databases and networking.</p>
+        </li>
+        <li>
+          <span class="timeline-dot timeline-dot-future"></span>
+          <p class="font-semibold">What's next</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Go deeper into AI and networking, and start building applications for local communities.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/40">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Skills</h2>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-12">
+      <div data-aos="fade-up">
+        <h3 class="font-display font-600 mb-6">Languages</h3>
+        <div class="space-y-5">
+          {% for skill, level in [('Python', 80), ('HTML', 90), ('CSS', 80), ('JavaScript', 65), ('SQL', 60), ('C++', 45)] %}
+          <div class="skill-bar-row">
+            <div class="flex justify-between text-sm mb-1">
+              <span>{{ skill }}</span><span class="text-slate-400">{{ level }}%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="{{ level }}"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="font-display font-600 mb-6">Tools</h3>
+        <div class="grid grid-cols-3 gap-4">
+          {% for tool, icon in [('Git','fa-git-alt'),('GitHub','fa-github'),('VS Code','fa-code'),('Figma','fa-figma'),('MySQL','fa-database'),('Flask','fa-flask')] %}
+          <div class="tool-card">
+            <i class="fa-brands {{ icon }} text-2xl mb-2"></i>
+            <p class="text-sm font-medium">{{ tool }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Projects</h2>
+    <p class="text-center text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">Practice projects I've built while learning — some rough around the edges, all real code.</p>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-between items-center">
+      <input id="project-search" type="text" placeholder="Search projects..." class="input-field max-w-xs" aria-label="Search projects">
+      <div id="project-filters" class="flex flex-wrap gap-2">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="Python">Python</button>
+        <button class="filter-chip" data-filter="Flask">Flask</button>
+        <button class="filter-chip" data-filter="JavaScript">JavaScript</button>
+        <button class="filter-chip" data-filter="SQLite">SQLite</button>
+      </div>
+    </div>
+
+    <div id="project-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for p in projects %}
+      <div class="project-card" data-tech="{{ p.tech | join(',') }}" data-title="{{ p.title | lower }}" data-aos="fade-up">
+        <div class="project-thumb">
+          <i class="fa-solid fa-code text-3xl text-white/80"></i>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display font-600">{{ p.title }}</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">{{ p.description }}</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            {% for t in p.tech %}<span class="badge">{{ t }}</span>{% endfor %}
+          </div>
+          <div class="flex gap-3 mt-5">
+            <a href="{{ p.github }}" class="btn-mini"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="{{ p.demo }}" class="btn-mini-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p id="no-results" class="hidden text-center text-slate-400 mt-10">No projects match your search.</p>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/40">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Education</h2>
+    <div class="mt-14 space-y-8">
+      <div class="edu-card" data-aos="fade-up">
+        <i class="fa-solid fa-graduation-cap edu-icon"></i>
+        <div>
+          <p class="font-display font-600">National University of Management</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">B.A. in Information Technology &middot; First Year</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Coursework: Programming, Databases, Networking, UI/UX Fundamentals</p>
+        </div>
+      </div>
+      <div class="edu-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-school edu-icon"></i>
+        <div>
+          <p class="font-display font-600">Kampong Thom High School</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">High School Diploma</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Certificates</h2>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-2">
+      <button class="filter-chip active" data-cert-filter="all">All</button>
+      <button class="filter-chip" data-cert-filter="Programming">Programming</button>
+      <button class="filter-chip" data-cert-filter="Design">Design</button>
+      <button class="filter-chip" data-cert-filter="Networking">Networking</button>
+      <button class="filter-chip" data-cert-filter="Languages">Languages</button>
+    </div>
+
+    <div id="cert-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {% for c in certificates %}
+      <button class="cert-card" data-category="{{ c.category }}" data-aos="zoom-in"
+              data-title="{{ c.title }}" data-issuer="{{ c.issuer }}">
+        <i class="fa-solid fa-certificate text-3xl text-brand-purple mb-3"></i>
+        <p class="font-medium text-sm">{{ c.title }}</p>
+        <p class="text-xs text-slate-400 mt-1">{{ c.category }}</p>
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Experience &amp; involvement</h2>
+    <p class="text-center text-slate-500 dark:text-slate-400 mt-3">No formal job yet — here's where my time has actually gone.</p>
+
+    <div class="mt-12 grid sm:grid-cols-2 gap-6">
+      <div class="exp-card" data-aos="fade-up">
+        <i class="fa-solid fa-hands-helping exp-icon"></i>
+        <p class="font-display font-600">Volunteer support</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Helped classmates set up their dev environments and debug early Python assignments.</p>
+      </div>
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="75">
+        <i class="fa-solid fa-code-branch exp-icon"></i>
+        <p class="font-display font-600">Personal projects</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Seven self-directed builds, from a habit tracker to a small marketplace concept.</p>
+      </div>
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="150">
+        <i class="fa-solid fa-trophy exp-icon"></i>
+        <p class="font-display font-600">Hackathons</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Looking to join my first hackathon this year — this spot is reserved for that story.</p>
+      </div>
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="225">
+        <i class="fa-brands fa-github exp-icon"></i>
+        <p class="font-display font-600">Open source</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Starting to explore small open-source issues to get comfortable with real codebases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAY / KHQR -->
+<section id="pay" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <div data-aos="fade-right">
+      <h2 class="section-title">Hire me or support my work</h2>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        If you've ordered a small website or app from me, or you simply like what I'm building, you can pay or chip in with any Cambodian banking app that supports KHQR.
+      </p>
+      <ol class="pay-steps mt-6">
+        <li>Open your banking app and choose <strong>Scan QR</strong>.</li>
+        <li>Scan the KHQR on this page, or tap <strong>Pay with ABA</strong> if you're on your phone.</li>
+        <li>Enter the amount and add a short note so I know what it's for.</li>
+      </ol>
+      <div class="flex flex-wrap gap-3 mt-8">
+        <a href="https://pay.ababank.com/oRF8/nqwcu8qp" class="btn-primary" target="_blank" rel="noopener">
+          <i class="fa-solid fa-mobile-screen-button mr-2"></i> Pay with ABA
+        </a>
+        <a href="{{ url_for('static', filename='images/khqr.jpg') }}" class="btn-secondary" download="Lianghok-KHQR.jpg">
+          <i class="fa-solid fa-download mr-2"></i> Save QR
+        </a>
+        <button type="button" id="copy-pay-link" class="btn-ghost" data-link="https://pay.ababank.com/oRF8/nqwcu8qp">
+          <i class="fa-regular fa-copy mr-2"></i><span>Copy pay link</span>
+        </button>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-5">The account name shown on your banking app should read <strong>LIANGHOK CHHEANG</strong>. If it doesn't, don't send the payment.</p>
+    </div>
+
+    <div class="flex justify-center" data-aos="fade-left">
+      <button type="button" id="khqr-open" class="khqr-frame" aria-label="Enlarge KHQR payment code">
+        <img src="{{ url_for('static', filename='images/khqr.jpg') }}" alt="ABA KHQR payment code for Lianghok Chheang, with KHR and USD accounts"
+             width="905" height="1280" loading="lazy">
+        <span class="khqr-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap to enlarge</span>
+      </button>
+    </div>
+  </div>
+
+  <dialog id="khqr-dialog" class="khqr-dialog" aria-label="KHQR payment code">
+    <form method="dialog"><button class="khqr-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></form>
+    <img src="{{ url_for('static', filename='images/khqr.jpg') }}" alt="ABA KHQR payment code for Lianghok Chheang">
+  </dialog>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="section-title text-center" data-aos="fade-up">Get in touch</h2>
+    <p class="text-center text-slate-500 dark:text-slate-400 mt-3">Have a project idea, feedback, or just want to say hi? My inbox is open.</p>
+
+    <form id="contact-form" class="mt-12 grid gap-5" novalidate>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label for="name" class="form-label">Name</label>
+          <input id="name" name="name" type="text" class="input-field" required>
+          <p class="form-error" data-error-for="name"></p>
+        </div>
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <input id="email" name="email" type="email" class="input-field" required>
+          <p class="form-error" data-error-for="email"></p>
+        </div>
+      </div>
+      <div>
+        <label for="subject" class="form-label">Subject</label>
+        <input id="subject" name="subject" type="text" class="input-field" required>
+        <p class="form-error" data-error-for="subject"></p>
+      </div>
+      <div>
+        <label for="message" class="form-label">Message</label>
+        <textarea id="message" name="message" rows="5" class="input-field" required></textarea>
+        <p class="form-error" data-error-for="message"></p>
+      </div>
+      <button type="submit" class="btn-primary justify-self-start">
+        <span id="submit-text">Send message</span>
+        <i id="submit-spinner" class="fa-solid fa-spinner fa-spin hidden ml-2"></i>
+      </button>
+      <p id="form-success" class="hidden text-green-600 dark:text-green-400 text-sm font-medium"><i class="fa-solid fa-circle-check"></i> Thanks for reaching out — I'll reply soon.</p>
+      <p id="form-general-error" class="hidden text-red-500 text-sm font-medium"></p>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
